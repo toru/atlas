@@ -1,0 +1,10 @@
+/.bundle
+
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+/config/secrets.yml
+
+.byebug_history

@@ -1,0 +1,21 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  pool: 5
+  username: root
+  password:
+  socket: /tmp/mysql.sock
+
+development:
+  <<: *default
+  database: atlas_dev
+
+test:
+  <<: *default
+  database: atlas_test
+
+production:
+  <<: *default
+  database: atlas
+  username: atlas
+  password: <%= ENV['ATLAS_DB_PASSWORD'] %>
