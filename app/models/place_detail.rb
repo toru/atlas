@@ -1,0 +1,2 @@
+class PlaceDetail < ApplicationRecord
+end
