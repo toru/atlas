@@ -14,9 +14,6 @@ gem 'puma', '~> 3.0'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
@@ -28,6 +25,7 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'capistrano-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
