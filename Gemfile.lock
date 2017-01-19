@@ -40,6 +40,7 @@ GEM
       tzinfo (~> 1.1)
     airbrussh (1.1.2)
       sshkit (>= 1.6.1, != 1.7.0)
+    ansi (1.5.0)
     arel (7.1.4)
     builder (3.2.3)
     byebug (9.0.6)
@@ -75,6 +76,11 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
+    minitest-reporters (1.1.13)
+      ansi
+      builder
+      minitest (>= 5.0)
+      ruby-progressbar
     mysql2 (0.4.5)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -113,6 +119,7 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
+    ruby-progressbar (1.8.1)
     spring (2.0.0)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -143,6 +150,7 @@ DEPENDENCIES
   byebug
   capistrano-rails
   listen (~> 3.0.5)
+  minitest-reporters
   mysql2 (>= 0.3.18, < 0.5)
   puma (~> 3.0)
   rails (~> 5.0.1)
