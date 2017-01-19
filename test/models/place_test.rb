@@ -1,8 +1,12 @@
 require 'test_helper'
 
-class PlaceTest < ActiveSupport::TestCase
-  test 'transparent alternate_id generation on create' do
-    place = Place.create
-    assert place.alternate_id
+describe Place do
+  let(:place) { Place.new }
+
+  describe '#save' do
+    it 'transparently sets alternate_id on creation' do
+      place.save
+      assert place.alternate_id
+    end
   end
 end
