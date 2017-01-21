@@ -1,7 +1,7 @@
 require 'test_helper'
 
 describe Place do
-  let(:place) { Place.new }
+  let(:place) { build :place }
 
   describe '#save' do
     it 'transparently sets alternate_id on creation' do
