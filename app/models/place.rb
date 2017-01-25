@@ -1,4 +1,6 @@
 class Place < ApplicationRecord
+  belongs_to :country, optional: true
+
   has_many :place_details
 
   before_create :set_alternate_id
