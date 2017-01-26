@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170125060212) do
+ActiveRecord::Schema.define(version: 20170126052027) do
+
+  create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.integer  "country_id"
+    t.string   "slug",       limit: 64, null: false
+    t.string   "name"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["country_id"], name: "index_cities_on_country_id", using: :btree
+    t.index ["slug"], name: "index_cities_on_slug", unique: true, using: :btree
+  end
 
   create_table "countries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "slug",        limit: 64, null: false
