@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170126052027) do
+ActiveRecord::Schema.define(version: 20170127040352) do
 
   create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer  "country_id"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20170126052027) do
   create_table "places", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "alternate_id", limit: 64,                         null: false
     t.integer  "country_id"
+    t.integer  "city_id"
     t.string   "url"
     t.decimal  "latitude",                precision: 8, scale: 6
     t.decimal  "longitude",               precision: 9, scale: 6
