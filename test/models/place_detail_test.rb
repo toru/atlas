@@ -17,5 +17,12 @@ describe PlaceDetail do
       assert place_detail.invalid?
       assert_includes place_detail.errors, :locale
     end
+
+    it 'fails to validate with unknown locale' do
+      place_detail.locale = 'xyz'
+
+      assert place_detail.invalid?
+      assert_includes place_detail.errors, :locale
+    end
   end
 end
