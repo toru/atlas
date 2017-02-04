@@ -8,4 +8,9 @@ FactoryGirl.define do
 
     place
   end
+
+  factory :city do
+    slug { 'san-francisco' }
+    name { 'San Francisco' }
+  end
 end
