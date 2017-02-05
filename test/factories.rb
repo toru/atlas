@@ -9,6 +9,11 @@ FactoryGirl.define do
     place
   end
 
+  factory :country do
+    slug { 'new-zealand' }
+    name { 'New Zealand' }
+  end
+
   factory :city do
     slug { 'san-francisco' }
     name { 'San Francisco' }
