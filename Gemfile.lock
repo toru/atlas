@@ -58,6 +58,7 @@ GEM
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
     concurrent-ruby (1.0.4)
+    database_rewinder (0.8.0)
     erubis (2.7.0)
     factory_girl (4.8.0)
       activesupport (>= 3.0.0)
@@ -154,6 +155,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   capistrano-rails
+  database_rewinder
   factory_girl_rails
   listen (~> 3.0.5)
   minitest-reporters

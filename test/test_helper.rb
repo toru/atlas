@@ -8,4 +8,12 @@ Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 class Minitest::Spec
   include FactoryGirl::Syntax::Methods
+
+  before :each do
+    DatabaseRewinder.clean_all
+  end
+
+  after :each do
+    DatabaseRewinder.clean
+  end
 end

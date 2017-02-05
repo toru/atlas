@@ -24,6 +24,7 @@ end
 group :test do
   gem 'minitest-reporters'
   gem 'factory_girl_rails'
+  gem 'database_rewinder'
 end
 
 group :development do
