@@ -18,4 +18,8 @@ FactoryGirl.define do
     slug { 'san-francisco' }
     name { 'San Francisco' }
   end
+
+  factory :category do
+    name { 'Food' }
+  end
 end
