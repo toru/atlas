@@ -57,6 +57,9 @@ GEM
     capistrano-rails (1.2.2)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
+    capistrano3-puma (1.2.1)
+      capistrano (~> 3.0)
+      puma (>= 2.6)
     concurrent-ruby (1.0.4)
     database_rewinder (0.8.0)
     erubis (2.7.0)
@@ -155,6 +158,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   capistrano-rails
+  capistrano3-puma
   database_rewinder
   factory_girl_rails
   listen (~> 3.0.5)
