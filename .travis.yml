@@ -5,6 +5,9 @@ rvm:
   - 2.4.0
   - ruby-head
 
+services:
+  - mysql
+
 script:
   - RAILS_ENV=test bundle exec rake db:migrate --trace
   - bundle exec rake test
