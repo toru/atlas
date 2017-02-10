@@ -1,15 +1,15 @@
 language: ruby
 sudo: false
 
+cache:
+  - bundler
+
 rvm:
   - 2.4.0
-  - ruby-head
-
-services:
-  - mysql
 
 before_script:
   - RAILS_ENV=test bundle exec rake db:create --trace
+  - cp config/secrets.yml.travis config/secrets.yml
 
 script:
   - RAILS_ENV=test bundle exec rake db:migrate --trace
