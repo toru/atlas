@@ -17,6 +17,8 @@ gem 'puma', '~> 3.0'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
+gem 'kaminari', '~> 1.0', '>= 1.0.1'
+
 group :development, :test do
   gem 'byebug', platform: :mri
 end
