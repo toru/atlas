@@ -1,25 +1,28 @@
 FactoryGirl.define do
+  sequence(:unique_slug) { |i| "unique-slug-#{i}" }
+  sequence(:unique_name) { |i| "unique name #{i}" }
+
   factory :place do
   end
 
   factory :place_detail do
-    name { 'San Francisco Ferry Building' }
+    name { generate :unique_name }
     locale { 'en' }
 
     place
   end
 
   factory :country do
-    slug { 'new-zealand' }
-    name { 'New Zealand' }
+    slug { generate :unique_slug }
+    name { generate :unique_name }
   end
 
   factory :city do
-    slug { 'san-francisco' }
-    name { 'San Francisco' }
+    slug { generate :unique_slug }
+    name { generate :unique_name }
   end
 
   factory :category do
-    name { 'Food' }
+    name { generate :unique_name }
   end
 end
