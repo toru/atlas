@@ -3,13 +3,16 @@ FactoryGirl.define do
   sequence(:unique_name) { |i| "unique name #{i}" }
 
   factory :place do
+    after(:create) do |place|
+      create_list :place_detail, 1, place: place
+    end
   end
 
   factory :place_detail do
     name { generate :unique_name }
     locale { 'en' }
 
-    place
+    association :place, strategy: :build
   end
 
   factory :country do
