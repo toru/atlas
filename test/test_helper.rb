@@ -17,3 +17,7 @@ class Minitest::Spec
     DatabaseRewinder.clean
   end
 end
+
+class ActionDispatch::IntegrationTest
+  include FactoryGirl::Syntax::Methods
+end
