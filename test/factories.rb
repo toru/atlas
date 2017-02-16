@@ -3,8 +3,10 @@ FactoryGirl.define do
   sequence(:unique_name) { |i| "unique name #{i}" }
 
   factory :place do
-    after(:create) do |place|
-      create_list :place_detail, 1, place: place
+    factory :place_with_detail do
+      after(:create) do |place|
+        create_list :place_detail, 1, place: place
+      end
     end
   end
 
