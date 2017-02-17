@@ -13,10 +13,10 @@ class PlacesControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'POST /places' do
-    assert_raise AbstractController::ActionNotFound do
-      post places_path
-    end
+  test 'fails to create a place without a name' do
+    post places_path
+
+    assert_response :bad_request
   end
 
   test 'PUT /places/:id' do
