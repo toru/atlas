@@ -19,4 +19,20 @@ describe Place do
       assert place.alternate_id
     end
   end
+
+  describe '#name' do
+    describe 'when place_detail exists' do
+      it 'returns place_detail name' do
+        place = create :place_with_detail
+
+        assert_equal place.name, place.place_details.first.name
+      end
+    end
+
+    describe 'when place_detail does not exist' do
+      it 'returns nil' do
+        assert_nil place.name
+      end
+    end
+  end
 end

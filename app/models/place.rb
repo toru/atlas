@@ -1,5 +1,5 @@
 class Place < ApplicationRecord
-  attr_accessor :name
+  attr_writer :name
 
   belongs_to :country, optional: true
   belongs_to :city, optional: true
@@ -8,6 +8,15 @@ class Place < ApplicationRecord
 
   before_create :set_alternate_id
   before_save :set_place_detail
+
+  def name
+    return @name if @name.present?
+
+    # TODO(toru): There should be a convenient helper for this
+    pd = place_details.where(locale: I18n.locale).take
+
+    @name ||= pd.name if pd.present?
+  end
 
   private
 
@@ -26,6 +35,7 @@ class Place < ApplicationRecord
       return
     end
 
+    # FIXME(toru): This shouldn't matter
     if persisted?
       place_details.create name: name, locale: I18n.locale
     else
