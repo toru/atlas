@@ -25,7 +25,7 @@ describe Place do
       it 'returns place_detail name' do
         place = create :place_with_detail
 
-        assert_equal place.name, place.place_details.first.name
+        assert_equal place.name, place.place_detail.name
       end
     end
 

@@ -4,9 +4,9 @@ FactoryGirl.define do
 
   factory :place do
     factory :place_with_detail do
-      after(:create) do |place|
-        create_list :place_detail, 1, place: place
-      end
+      name { generate :unique_name }
+
+      after(:create) { |place| place.reload }
     end
   end
 

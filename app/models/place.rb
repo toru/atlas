@@ -4,6 +4,8 @@ class Place < ApplicationRecord
   belongs_to :country, optional: true
   belongs_to :city, optional: true
 
+  has_one :place_detail, -> { where locale: I18n.locale }
+
   has_many :place_details
 
   before_create :set_alternate_id
@@ -12,10 +14,7 @@ class Place < ApplicationRecord
   def name
     return @name if @name.present?
 
-    # TODO(toru): There should be a convenient helper for this
-    pd = place_details.where(locale: I18n.locale).take
-
-    @name ||= pd.name if pd.present?
+    @name ||= place_detail.name if place_detail.present?
   end
 
   private
@@ -28,10 +27,8 @@ class Place < ApplicationRecord
   end
 
   def set_place_detail
-    pd = place_details.where(locale: I18n.locale).take
-
-    if pd.present?
-      pd.update! name: name
+    if place_detail.present?
+      place_detail.update! name: name
       return
     end
 
