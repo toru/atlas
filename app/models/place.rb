@@ -11,6 +11,8 @@ class Place < ApplicationRecord
   before_create :set_alternate_id
   before_save :set_place_detail
 
+  validates :name, presence: true
+
   def name
     return @name if @name.present?
 

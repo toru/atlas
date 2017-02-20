@@ -3,9 +3,9 @@ FactoryGirl.define do
   sequence(:unique_name) { |i| "unique name #{i}" }
 
   factory :place do
-    factory :place_with_detail do
-      name { generate :unique_name }
+    name { generate :unique_name }
 
+    factory :place_with_detail do
       after(:create) { |place| place.reload }
     end
   end

@@ -2,7 +2,7 @@ require 'test_helper'
 
 describe PlaceDetail do
   describe '#invalid?' do
-    let(:place_detail) { create :place_detail }
+    let(:place_detail) { build :place_detail }
 
     it 'fails to validate without a name' do
       place_detail.name = nil
