@@ -6,6 +6,6 @@ class PlacesController < ApplicationController
   private
 
   def place_params
-    params.require %i(name)
+    params.permit %i(name)
   end
 end

@@ -16,7 +16,7 @@ class PlacesControllerTest < ActionDispatch::IntegrationTest
   test 'fails to create a place without a name' do
     post places_path
 
-    assert_response :bad_request
+    assert_response :success
   end
 
   test 'PUT /places/:id' do
