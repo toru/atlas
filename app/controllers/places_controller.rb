@@ -1,6 +1,15 @@
 class PlacesController < ApplicationController
   def create
-    place_params
+    @place = Place.new place_params
+
+    if @place.invalid?
+      render json: @place.errors, status: :bad_request
+      return
+    end
+
+    @place.save
+
+    render json: @place
   end
 
   private
