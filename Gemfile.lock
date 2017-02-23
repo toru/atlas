@@ -61,7 +61,6 @@ GEM
       capistrano (~> 3.0)
       puma (>= 2.6)
     concurrent-ruby (1.0.4)
-    database_rewinder (0.8.0)
     erubis (2.7.0)
     factory_girl (4.8.0)
       activesupport (>= 3.0.0)
@@ -174,7 +173,6 @@ DEPENDENCIES
   byebug
   capistrano-rails
   capistrano3-puma
-  database_rewinder
   factory_girl_rails
   kaminari (~> 1.0, >= 1.0.1)
   listen (~> 3.0.5)
