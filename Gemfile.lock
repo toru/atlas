@@ -102,6 +102,9 @@ GEM
       builder
       minitest (>= 5.0)
       ruby-progressbar
+    minitest-spec-rails (5.4.0)
+      minitest (~> 5.0)
+      rails (>= 4.1)
     mysql2 (0.4.5)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -176,6 +179,7 @@ DEPENDENCIES
   kaminari (~> 1.0, >= 1.0.1)
   listen (~> 3.0.5)
   minitest-reporters
+  minitest-spec-rails
   mysql2 (>= 0.3.18, < 0.5)
   puma (~> 3.0)
   rails (~> 5.0.1)
