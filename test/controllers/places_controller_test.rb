@@ -20,7 +20,7 @@ class PlacesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'creates a place when name is specified' do
-    post places_path, name: 'foo'
+    post places_path, params: { name: 'foo' }
 
     assert_response :success
   end
