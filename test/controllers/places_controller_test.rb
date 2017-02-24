@@ -1,39 +1,51 @@
 require 'test_helper'
 
 class PlacesControllerTest < ActionDispatch::IntegrationTest
-  test 'GET /places' do
-    assert_raise AbstractController::ActionNotFound do
-      get places_path
+  let(:place_name) { 'foo' }
+
+  describe 'GET /places' do
+    it 'raises an error' do
+      assert_raise AbstractController::ActionNotFound do
+        get places_path
+      end
     end
   end
 
-  test 'GET /places/:id' do
-    assert_raise AbstractController::ActionNotFound do
-      get place_path(id: 'xyz')
+  describe 'GET /places/:id' do
+    it 'raises an error' do
+      assert_raise AbstractController::ActionNotFound do
+        get place_path(id: 'xyz')
+      end
     end
   end
 
-  test 'fails to create a place without a name' do
-    post places_path
+  describe 'POST /places' do
+    it 'fails to create a place without a name' do
+      post places_path
 
-    assert_response :bad_request
-  end
+      assert_response :bad_request
+    end
 
-  test 'creates a place when name is specified' do
-    post places_path, params: { name: 'foo' }
+    it 'creates a place' do
+      post places_path, params: { name: name }
 
-    assert_response :success
-  end
-
-  test 'PUT /places/:id' do
-    assert_raise AbstractController::ActionNotFound do
-      put place_path(id: 'xyz')
+      assert_response :success
     end
   end
 
-  test 'DELETE /places/:id' do
-    assert_raise AbstractController::ActionNotFound do
-      delete place_path(id: 'xyz')
+  describe 'PUT /places/:id' do
+    it 'raises an error' do
+      assert_raise AbstractController::ActionNotFound do
+        put place_path(id: 'xyz')
+      end
+    end
+  end
+
+  describe 'DELETE /places/:id' do
+    it 'raises an error' do
+      assert_raise AbstractController::ActionNotFound do
+        delete place_path(id: 'xyz')
+      end
     end
   end
 end
