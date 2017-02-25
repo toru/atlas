@@ -1,4 +1,10 @@
 class PlacesController < ApplicationController
+  def index
+    @places = Place.includes(:place_detail).page(params[:page])
+
+    render json: @places.to_json(methods: %i(name))
+  end
+
   def create
     @place = Place.new place_params
 

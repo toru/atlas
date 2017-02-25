@@ -23,7 +23,7 @@ class Place < ApplicationRecord
 
   def set_alternate_id
     loop do
-      self.alternate_id = SecureRandom.hex[0..11]
+      self.alternate_id = SecureRandom.hex[0..15]
       break unless self.class.exists? alternate_id: alternate_id
     end
   end
