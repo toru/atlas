@@ -1,4 +1,4 @@
-class PlaceDetail < ApplicationRecord
+class PlaceContent < ApplicationRecord
   belongs_to :place
 
   validates :name,   presence: true

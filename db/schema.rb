@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170130034258) do
+ActiveRecord::Schema.define(version: 20170226061248) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "name"
@@ -38,13 +38,13 @@ ActiveRecord::Schema.define(version: 20170130034258) do
     t.index ["slug"], name: "index_countries_on_slug", unique: true, using: :btree
   end
 
-  create_table "place_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+  create_table "place_contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer  "place_id",              null: false
     t.string   "locale",     limit: 16
     t.string   "name"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
-    t.index ["place_id", "locale"], name: "index_place_details_on_place_id_and_locale", unique: true, using: :btree
+    t.index ["place_id", "locale"], name: "index_place_contents_on_place_id_and_locale", unique: true, using: :btree
   end
 
   create_table "places", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
