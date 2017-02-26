@@ -5,12 +5,12 @@ FactoryGirl.define do
   factory :place do
     name { generate :unique_name }
 
-    factory :place_with_detail do
+    factory :place_with_content do
       after(:create) { |place| place.reload }
     end
   end
 
-  factory :place_detail do
+  factory :place_content do
     name { generate :unique_name }
     locale { 'en' }
 
