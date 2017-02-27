@@ -5,6 +5,12 @@ class PlacesController < ApplicationController
     render json: @places.to_json(methods: %i(name))
   end
 
+  def show
+    @place = Place.includes(:place_content).find_by!(alternate_id: params[:id])
+
+    render json: @place
+  end
+
   def create
     @place = Place.new place_params
 

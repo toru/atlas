@@ -2,6 +2,7 @@ require 'test_helper'
 
 class PlacesControllerTest < ActionDispatch::IntegrationTest
   let(:place_name) { 'foo' }
+  let(:place)      { create :place }
   let(:places)     { create_list :place, 5 }
 
   describe 'GET /places' do
@@ -21,10 +22,14 @@ class PlacesControllerTest < ActionDispatch::IntegrationTest
   end
 
   describe 'GET /places/:id' do
-    it 'raises an error' do
-      assert_raise AbstractController::ActionNotFound do
-        get place_path(id: 'xyz')
-      end
+    before  { place }
+    subject { JSON.parse body }
+
+    it 'returns a place object on success' do
+      get place_path(id: place.alternate_id)
+
+      assert_response :success
+      assert_equal place.id, subject['id']
     end
   end
 
