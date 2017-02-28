@@ -1,8 +1,12 @@
 class ApplicationController < ActionController::API
   before_action :set_locale
 
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    render json: '', status: :not_found
+  end
+
   rescue_from ActionController::ParameterMissing do |exception|
-    render body: nil, status: :bad_request
+    render json: '', status: :bad_request
   end
 
   def set_locale
