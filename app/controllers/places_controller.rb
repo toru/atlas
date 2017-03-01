@@ -6,9 +6,9 @@ class PlacesController < ApplicationController
   end
 
   def show
-    @place = Place.includes(:place_content).find_by!(alternate_id: params[:id])
+    @place = Place.find_by!(alternate_id: params[:id])
 
-    render json: @place
+    render json: @place.to_json(methods: %i(name))
   end
 
   def create
@@ -19,9 +19,24 @@ class PlacesController < ApplicationController
       return
     end
 
-    @place.save
+    @place.save!
 
     render json: @place
+  end
+
+  def update
+    @place = Place.find_by!(alternate_id: params[:id])
+
+    @place.assign_attributes place_params
+
+    if @place.invalid?
+      render json: @place.errors, status: :bad_request
+      return
+    end
+
+    @place.save!
+
+    render json: @place.to_json(methods: %i(name))
   end
 
   private

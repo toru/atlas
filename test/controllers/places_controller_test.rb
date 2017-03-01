@@ -48,10 +48,19 @@ class PlacesControllerTest < ActionDispatch::IntegrationTest
   end
 
   describe 'PUT /places/:id' do
-    it 'raises an error' do
-      assert_raise AbstractController::ActionNotFound do
-        put place_path(id: 'xyz')
-      end
+    subject { JSON.parse body }
+
+    it 'returns not_found on non-existing record' do
+      put place_path(id: 'xyz')
+
+      assert_response :not_found
+    end
+
+    it 'updates an existing record' do
+      put place_path(id: place.alternate_id), params: { name: place_name }
+
+      assert_response :success
+      assert_equal place_name, subject['name']
     end
   end
 
