@@ -1,9 +1,10 @@
 require 'test_helper'
 
 class PlacesControllerTest < ActionDispatch::IntegrationTest
-  let(:place_name) { 'foo' }
-  let(:place)      { create :place }
-  let(:places)     { create_list :place, 5 }
+  let(:place_name)   { 'foo' }
+  let(:place)        { create :place }
+  let(:places)       { create_list :place, 5 }
+  let(:bad_place_id) { 'xyz' }
 
   describe 'GET /places' do
     before  { places }
@@ -65,10 +66,16 @@ class PlacesControllerTest < ActionDispatch::IntegrationTest
   end
 
   describe 'DELETE /places/:id' do
-    it 'raises an error' do
-      assert_raise AbstractController::ActionNotFound do
-        delete place_path(id: 'xyz')
-      end
+    it 'returns not_found on non-existing record' do
+      delete place_path(id: bad_place_id)
+
+      assert_response :not_found
+    end
+
+    it 'deletes an existing record' do
+      delete place_path(id: place.alternate_id)
+
+      assert_response :success
     end
   end
 end

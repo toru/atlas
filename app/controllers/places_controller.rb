@@ -39,6 +39,13 @@ class PlacesController < ApplicationController
     render json: @place.to_json(methods: %i(name))
   end
 
+  def destroy
+    @place = Place.find_by!(alternate_id: params[:id])
+    @place.destroy
+
+    render json: nil
+  end
+
   private
 
   def place_params
