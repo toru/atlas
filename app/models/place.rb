@@ -6,7 +6,7 @@ class Place < ApplicationRecord
 
   has_one :place_content , -> { where locale: I18n.locale }
 
-  has_many :place_contents
+  has_many :place_contents, dependent: :destroy
 
   before_create :set_alternate_id
   before_save :set_place_content

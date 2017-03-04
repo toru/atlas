@@ -52,7 +52,7 @@ class PlacesControllerTest < ActionDispatch::IntegrationTest
     subject { JSON.parse body }
 
     it 'returns not_found on non-existing record' do
-      put place_path(id: 'xyz')
+      put place_path(id: bad_place_id)
 
       assert_response :not_found
     end
@@ -76,6 +76,15 @@ class PlacesControllerTest < ActionDispatch::IntegrationTest
       delete place_path(id: place.alternate_id)
 
       assert_response :success
+    end
+
+    it 'deletes associated place_contents' do
+      refute_empty place.place_contents
+
+      delete place_path(id: place.alternate_id)
+
+      assert_response :success
+      assert_empty place.place_contents.reload
     end
   end
 end
