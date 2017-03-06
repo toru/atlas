@@ -2,13 +2,13 @@ class PlacesController < ApplicationController
   def index
     @places = Place.includes(:place_content).page(params[:page])
 
-    render json: @places.to_json(methods: %i(name))
+    render json: @places
   end
 
   def show
     @place = Place.find_by!(alternate_id: params[:id])
 
-    render json: @place.to_json(methods: %i(name))
+    render json: @place
   end
 
   def create
@@ -36,7 +36,7 @@ class PlacesController < ApplicationController
 
     @place.save!
 
-    render json: @place.to_json(methods: %i(name))
+    render json: @place
   end
 
   def destroy
