@@ -1,20 +1,25 @@
 require 'test_helper'
 
 class CategoriesControllerTest < ActionDispatch::IntegrationTest
-  let(:place_id) { 'xyz' }
+  let(:category_id) { 'xyz' }
+  let(:categories)  { create_list :category, 5 }
 
   describe 'GET /categories' do
-    it 'raises an error' do
-      assert_raise AbstractController::ActionNotFound do
-        get categories_path
-      end
+    before  { categories }
+    subject { JSON.parse body }
+
+    it 'returns an array of places' do
+      get categories_path
+
+      assert_response :success
+      assert_equal categories.count, subject.count
     end
   end
 
   describe 'GET /categories/:id' do
     it 'raises an error' do
       assert_raise AbstractController::ActionNotFound do
-        get category_path(id: place_id)
+        get category_path(id: category_id)
       end
     end
   end
@@ -30,7 +35,7 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
   describe 'PUT /categories/:id' do
     it 'raises an error' do
       assert_raise AbstractController::ActionNotFound do
-        put category_path(id: place_id)
+        put category_path(id: category_id)
       end
     end
   end
@@ -38,7 +43,7 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
   describe 'DELETE /categories/:id' do
     it 'raises an error' do
       assert_raise AbstractController::ActionNotFound do
-        delete category_path(id: place_id)
+        delete category_path(id: category_id)
       end
     end
   end
