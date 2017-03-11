@@ -25,10 +25,19 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   describe 'POST /categories' do
-    it 'raises an error' do
-      assert_raise AbstractController::ActionNotFound do
-        post categories_path
-      end
+    subject { JSON.parse body }
+
+    it 'fails to create a category without a name' do
+      post categories_path
+
+      assert_response :bad_request
+    end
+
+    it 'creates a category' do
+      post categories_path, params: { name: name }
+
+      assert_response :success
+      assert_equal name, subject['name']
     end
   end
 
