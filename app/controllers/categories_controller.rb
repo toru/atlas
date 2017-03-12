@@ -21,6 +21,6 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.permit %i(name)
+    params.permit %i(slug name)
   end
 end

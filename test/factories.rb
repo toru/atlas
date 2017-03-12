@@ -28,6 +28,7 @@ FactoryGirl.define do
   end
 
   factory :category do
+    slug { generate :unique_slug }
     name { generate :unique_name }
   end
 end

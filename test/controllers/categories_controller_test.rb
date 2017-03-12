@@ -34,7 +34,7 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
     end
 
     it 'creates a category' do
-      post categories_path, params: { name: name }
+      post categories_path, params: { slug: 'test', name: name }
 
       assert_response :success
       assert_equal name, subject['name']
