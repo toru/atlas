@@ -13,6 +13,10 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
 
       assert_response :success
       assert_equal categories.count, subject.count
+
+      categories.each_with_index do |cat, idx|
+        assert_equal cat.slug, subject[idx]['slug']
+      end
     end
   end
 
