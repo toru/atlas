@@ -16,7 +16,7 @@ class PlacesControllerTest < ActionDispatch::IntegrationTest
       assert_response :success
       assert_equal places.count, subject.count
 
-      places.each_with_index.each do |place, idx|
+      places.each_with_index do |place, idx|
         assert_equal place.alternate_id, subject[idx]['id']
         assert_equal place.name, subject[idx]['name']
       end
