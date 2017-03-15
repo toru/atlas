@@ -1,8 +1,9 @@
 class Place < ApplicationRecord
   attr_writer :name
 
-  belongs_to :country, optional: true
-  belongs_to :city, optional: true
+  belongs_to :category, optional: true
+  belongs_to :country,  optional: true
+  belongs_to :city,     optional: true
 
   has_one :place_content , -> { where locale: I18n.locale }
 
