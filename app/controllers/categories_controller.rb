@@ -5,6 +5,12 @@ class CategoriesController < ApplicationController
     render json: @categories
   end
 
+  def show
+    @category = Category.find_by!(slug: params[:id])
+
+    render json: @category
+  end
+
   def create
     @category = Category.new category_params
 

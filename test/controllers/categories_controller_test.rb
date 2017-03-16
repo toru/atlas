@@ -2,6 +2,7 @@ require 'test_helper'
 
 class CategoriesControllerTest < ActionDispatch::IntegrationTest
   let(:category_id) { 'xyz' }
+  let(:category)    { create :category }
   let(:categories)  { create_list :category, 5 }
 
   describe 'GET /categories' do
@@ -21,10 +22,21 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   describe 'GET /categories/:id' do
-    it 'raises an error' do
-      assert_raise AbstractController::ActionNotFound do
-        get category_path(id: category_id)
-      end
+    before  { category }
+    subject { JSON.parse body }
+
+    it 'returns a category object on success' do
+      get category_path(id: category.slug)
+
+      assert_response :success
+      assert_equal category.slug, subject['slug']
+      assert_equal category.name, subject['name']
+    end
+
+    it 'returns not_found on non-existing record' do
+      get category_path(id: category_id)
+
+      assert_response :not_found
     end
   end
 
