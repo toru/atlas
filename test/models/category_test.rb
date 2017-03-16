@@ -4,6 +4,13 @@ describe Category do
   describe '#invalid?' do
     let(:category) { create :category }
 
+    it 'fails to validate without a slug' do
+      category.slug = nil
+
+      assert category.invalid?
+      assert_includes category.errors, :slug
+    end
+
     it 'fails to validate without a name' do
       category.name = nil
 
