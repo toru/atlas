@@ -1,6 +1,8 @@
 class Checkin < ApplicationRecord
   MAX_ID_LEN = 16
 
+  belongs_to :place
+
   before_create :set_id
 
   private
