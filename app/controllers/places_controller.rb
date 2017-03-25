@@ -1,6 +1,7 @@
 class PlacesController < ApplicationController
   def index
     @places = Place.includes(:place_content).page(params[:page])
+    @places = pretty_format(@places) if params[:pp] == '1'
 
     render json: @places
   end
@@ -50,5 +51,10 @@ class PlacesController < ApplicationController
 
   def place_params
     params.permit %i(name)
+  end
+
+  def pretty_format(subject)
+    resource = ActiveModelSerializers::SerializableResource.new(subject)
+    JSON.pretty_generate resource.as_json
   end
 end
