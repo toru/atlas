@@ -31,4 +31,9 @@ FactoryGirl.define do
     slug { generate :unique_slug }
     name { generate :unique_name }
   end
+
+  factory :checkin do
+    id { generate :unique_slug }
+    place
+  end
 end
