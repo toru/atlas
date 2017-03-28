@@ -26,6 +26,7 @@ class CheckinsControllerTest < ActionDispatch::IntegrationTest
 
         subject.each do |checkin|
           assert Checkin.exists?(id: checkin['id'], public: true)
+          assert_includes checkin, 'place'
         end
       end
     end
