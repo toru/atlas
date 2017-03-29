@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170321042909) do
+ActiveRecord::Schema.define(version: 20170329025814) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "slug",       null: false
@@ -57,16 +57,16 @@ ActiveRecord::Schema.define(version: 20170321042909) do
   end
 
   create_table "places", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
-    t.string   "alternate_id", limit: 64,                         null: false
+    t.string   "external_id", limit: 64,                         null: false
     t.integer  "category_id"
     t.integer  "country_id"
     t.integer  "city_id"
     t.string   "url"
-    t.decimal  "latitude",                precision: 8, scale: 6
-    t.decimal  "longitude",               precision: 9, scale: 6
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
-    t.index ["alternate_id"], name: "index_places_on_alternate_id", unique: true, using: :btree
+    t.decimal  "latitude",               precision: 8, scale: 6
+    t.decimal  "longitude",              precision: 9, scale: 6
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+    t.index ["external_id"], name: "index_places_on_external_id", unique: true, using: :btree
   end
 
 end
