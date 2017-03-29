@@ -10,7 +10,7 @@ class Place < ApplicationRecord
   has_many :place_contents, dependent: :destroy
   has_many :checkins
 
-  before_create :set_alternate_id
+  before_create :set_external_id
   before_save :set_place_content
 
   validates :name, presence: true
@@ -23,10 +23,10 @@ class Place < ApplicationRecord
 
   private
 
-  def set_alternate_id
+  def set_external_id
     loop do
-      self.alternate_id = SecureRandom.hex[0..15]
-      break unless self.class.exists? alternate_id: alternate_id
+      self.external_id = SecureRandom.hex[0..15]
+      break unless self.class.exists? external_id: external_id
     end
   end
 

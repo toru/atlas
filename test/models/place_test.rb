@@ -18,8 +18,8 @@ describe Place do
       assert place.place_contents.last.locale, I18n.locale.to_s
     end
 
-    it 'transparently sets alternate_id on creation' do
-      assert place.alternate_id
+    it 'transparently sets external_id on creation' do
+      assert place.external_id
     end
   end
 

@@ -4,6 +4,6 @@ class PlaceSerializer < ActiveModel::Serializer
   belongs_to :category
 
   def id
-    object.alternate_id
+    object.external_id
   end
 end

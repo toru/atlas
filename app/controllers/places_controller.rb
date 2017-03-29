@@ -7,7 +7,7 @@ class PlacesController < ApplicationController
   end
 
   def show
-    @place = Place.find_by!(alternate_id: params[:id])
+    @place = Place.find_by!(external_id: params[:id])
 
     render json: @place
   end
@@ -26,7 +26,7 @@ class PlacesController < ApplicationController
   end
 
   def update
-    @place = Place.find_by!(alternate_id: params[:id])
+    @place = Place.find_by!(external_id: params[:id])
 
     @place.assign_attributes place_params
 
@@ -41,7 +41,7 @@ class PlacesController < ApplicationController
   end
 
   def destroy
-    @place = Place.find_by!(alternate_id: params[:id])
+    @place = Place.find_by!(external_id: params[:id])
     @place.destroy
 
     render json: nil

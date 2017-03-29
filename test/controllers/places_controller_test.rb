@@ -17,7 +17,7 @@ class PlacesControllerTest < ActionDispatch::IntegrationTest
       assert_equal places.count, subject.count
 
       places.each_with_index do |place, idx|
-        assert_equal place.alternate_id, subject[idx]['id']
+        assert_equal place.external_id, subject[idx]['id']
         assert_equal place.name, subject[idx]['name']
       end
     end
@@ -28,10 +28,10 @@ class PlacesControllerTest < ActionDispatch::IntegrationTest
     subject { JSON.parse body }
 
     it 'returns a place object on success' do
-      get place_path(id: place.alternate_id)
+      get place_path(id: place.external_id)
 
       assert_response :success
-      assert_equal place.alternate_id, subject['id']
+      assert_equal place.external_id, subject['id']
       assert_equal place.name, subject['name']
     end
   end
@@ -60,7 +60,7 @@ class PlacesControllerTest < ActionDispatch::IntegrationTest
     end
 
     it 'updates an existing record' do
-      put place_path(id: place.alternate_id), params: { name: place_name }
+      put place_path(id: place.external_id), params: { name: place_name }
 
       assert_response :success
       assert_equal place_name, subject['name']
@@ -75,7 +75,7 @@ class PlacesControllerTest < ActionDispatch::IntegrationTest
     end
 
     it 'deletes an existing record' do
-      delete place_path(id: place.alternate_id)
+      delete place_path(id: place.external_id)
 
       assert_response :success
     end
@@ -83,7 +83,7 @@ class PlacesControllerTest < ActionDispatch::IntegrationTest
     it 'deletes associated place_contents' do
       refute_empty place.place_contents
 
-      delete place_path(id: place.alternate_id)
+      delete place_path(id: place.external_id)
 
       assert_response :success
       assert_empty place.place_contents.reload
