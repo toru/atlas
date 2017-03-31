@@ -9,6 +9,10 @@ class ApplicationController < ActionController::API
     render json: '', status: :bad_request
   end
 
+  def render_400(msg: nil)
+    render json: { message: msg }, status: :bad_request
+  end
+
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
   end
