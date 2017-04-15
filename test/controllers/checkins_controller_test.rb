@@ -64,6 +64,16 @@ class CheckinsControllerTest < ActionDispatch::IntegrationTest
       assert_equal place.external_id, subject['place']['id']
       assert_equal 'yyyy-mm-dd'.length, subject['created_at'].length
     end
+
+    describe 'with show_time parameter' do
+      it 'returns success with full created_at attribute' do
+        post checkins_path(place_id: place.external_id, show_time: '1')
+
+        assert_response :success
+        assert_equal place.external_id, subject['place']['id']
+        assert_operator 'yyyy-mm-dd'.length, :<, subject['created_at'].length
+      end
+    end
   end
 
   describe 'PUT /checkins/:id' do
