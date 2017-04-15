@@ -10,6 +10,7 @@ class CheckinsController < ApplicationController
 
     @place   = Place.find_by! external_id: params[:place_id]
     @checkin = Checkin.new place: @place
+    @checkin.show_time = params[:show_time] == '1'
 
     if @checkin.invalid?
       render json: @checkin.errors, status: :bad_request
