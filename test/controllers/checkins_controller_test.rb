@@ -62,6 +62,7 @@ class CheckinsControllerTest < ActionDispatch::IntegrationTest
 
       assert_response :success
       assert_equal place.external_id, subject['place']['id']
+      assert_equal 'yyyy-mm-dd'.length, subject['created_at'].length
     end
   end
 
