@@ -2,7 +2,7 @@ require 'test_helper'
 
 class CheckinsControllerTest < ActionDispatch::IntegrationTest
   let(:private_checkins) { create_list :checkin, 3 }
-  let(:public_checkins)  { create_list :checkin, 2, public: true }
+  let(:public_checkins)  { create_list :checkin, 2, is_public: true }
   let(:place)            { create :place }
 
   describe 'GET /checkins' do
@@ -26,7 +26,7 @@ class CheckinsControllerTest < ActionDispatch::IntegrationTest
         assert_equal public_checkins.count, subject.count
 
         subject.each do |checkin|
-          assert Checkin.exists?(id: checkin['id'], public: true)
+          assert Checkin.exists?(id: checkin['id'], is_public: true)
           assert_includes checkin, 'place'
         end
       end
