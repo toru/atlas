@@ -34,27 +34,29 @@ class CheckinsControllerTest < ActionDispatch::IntegrationTest
   end
 
   describe 'GET /checkins/:id' do
-    before do
-      public_checkins
-      private_checkins
-    end
+    let(:public_checkin)  { public_checkins.last }
+    let(:private_checkin) { private_checkins.last }
 
     it 'returns a place object on success' do
-      get checkin_path(id: public_checkins.last.id)
+      get checkin_path(id: public_checkin.id)
 
       assert_response :success
     end
 
-    it 'returns not_found on non-existing record' do
-      get checkin_path(id: 'bad_id')
+    describe 'with a non-existing checkin id' do
+      it 'returns not_found' do
+        get checkin_path(id: 'bad_id')
 
-      assert_response :not_found
+        assert_response :not_found
+      end
     end
 
-    it 'returns not_found on private record' do
-      get checkin_path(id: private_checkins.last.id)
+    describe 'with a private checkin id' do
+      it 'returns not_found' do
+        get checkin_path(id: private_checkin.id)
 
-      assert_response :not_found
+        assert_response :not_found
+      end
     end
   end
 
