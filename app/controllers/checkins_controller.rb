@@ -5,6 +5,12 @@ class CheckinsController < ApplicationController
     render json: @checkins
   end
 
+  def show
+    @checkin = Checkin.where(is_public: true).find(params[:id])
+
+    render json: @checkin
+  end
+
   def create
     return render_400(msg: 'place_id required') unless params[:place_id]
 

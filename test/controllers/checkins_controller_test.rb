@@ -34,10 +34,27 @@ class CheckinsControllerTest < ActionDispatch::IntegrationTest
   end
 
   describe 'GET /checkins/:id' do
-    it 'raises an error' do
-      assert_raise AbstractController::ActionNotFound do
-        get checkin_path(id: 'x')
-      end
+    before do
+      public_checkins
+      private_checkins
+    end
+
+    it 'returns a place object on success' do
+      get checkin_path(id: public_checkins.last.id)
+
+      assert_response :success
+    end
+
+    it 'returns not_found on non-existing record' do
+      get checkin_path(id: 'bad_id')
+
+      assert_response :not_found
+    end
+
+    it 'returns not_found on private record' do
+      get checkin_path(id: private_checkins.last.id)
+
+      assert_response :not_found
     end
   end
 
