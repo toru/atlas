@@ -27,4 +27,17 @@ class CheckinsController < ApplicationController
 
     render json: @checkin
   end
+
+  def update
+    @checkin = Checkin.find params[:id]
+    @checkin.update! checkin_params
+
+    render json: @checkin
+  end
+
+  private
+
+  def checkin_params
+    params.permit(:comment)
+  end
 end

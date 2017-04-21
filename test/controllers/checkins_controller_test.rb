@@ -4,6 +4,7 @@ class CheckinsControllerTest < ActionDispatch::IntegrationTest
   let(:private_checkins) { create_list :checkin, 3 }
   let(:public_checkins)  { create_list :checkin, 2, is_public: true }
   let(:place)            { create :place }
+  let(:comment)          { 'amazing pancakes' }
 
   describe 'GET /checkins' do
     before  { private_checkins }
@@ -96,10 +97,21 @@ class CheckinsControllerTest < ActionDispatch::IntegrationTest
   end
 
   describe 'PUT /checkins/:id' do
-    it 'raises an error' do
-      assert_raise AbstractController::ActionNotFound do
-        put checkin_path(id: 'x')
-      end
+    subject { JSON.parse body }
+
+    it 'returns not_found on non-existing record' do
+      put checkin_path(id: 'x')
+
+      assert_response :not_found
+    end
+
+    it 'updates an existing record' do
+      checkin = public_checkins.last
+
+      put checkin_path(id: checkin), params: { comment: comment }
+
+      assert_response :success
+      assert_equal comment, subject['comment']
     end
   end
 
