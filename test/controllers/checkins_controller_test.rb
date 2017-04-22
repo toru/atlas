@@ -85,6 +85,13 @@ class CheckinsControllerTest < ActionDispatch::IntegrationTest
       assert_equal 'yyyy-mm-dd'.length, subject['created_at'].length
     end
 
+    it 'creates a private checkin record by default' do
+      post checkins_path(place_id: place.external_id)
+
+      assert_response :success
+      refute Checkin.find(subject['id']).is_public?
+    end
+
     describe 'with show_time parameter' do
       it 'returns success with full created_at attribute' do
         post checkins_path(place_id: place.external_id, show_time: '1')
