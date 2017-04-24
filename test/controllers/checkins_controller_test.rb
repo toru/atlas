@@ -120,6 +120,18 @@ class CheckinsControllerTest < ActionDispatch::IntegrationTest
       assert_response :success
       assert_equal comment, subject['comment']
     end
+
+    it 'updates the visibility of a checkin' do
+      checkin = private_checkins.last
+
+      refute checkin.is_public?
+
+      put checkin_path(id: checkin), params: { is_public: '1' }
+      checkin.reload
+
+      assert_response :success
+      assert checkin.is_public?
+    end
   end
 
   describe 'DELETE /checkins/:id' do

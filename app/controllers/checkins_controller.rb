@@ -38,6 +38,6 @@ class CheckinsController < ApplicationController
   private
 
   def checkin_params
-    params.permit(:comment)
+    params.permit(:is_public, :comment)
   end
 end
