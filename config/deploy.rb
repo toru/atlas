@@ -1,4 +1,4 @@
-lock '3.7.1'
+lock '3.8.0'
 
 set :application, 'atlas'
 set :repo_url, 'https://github.com/tmaesaka/atlas.git'
