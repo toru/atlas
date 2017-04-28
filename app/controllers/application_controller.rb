@@ -16,4 +16,11 @@ class ApplicationController < ActionController::API
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
   end
+
+  protected
+
+  def pretty_format(subject)
+    resource = ActiveModelSerializers::SerializableResource.new(subject)
+    JSON.pretty_generate resource.as_json
+  end
 end

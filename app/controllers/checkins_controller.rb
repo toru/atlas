@@ -1,6 +1,7 @@
 class CheckinsController < ApplicationController
   def index
     @checkins = Checkin.where(is_public: true).page(params[:page])
+    @checkins = pretty_format(@checkins) if params[:pp] == '1'
 
     render json: @checkins
   end

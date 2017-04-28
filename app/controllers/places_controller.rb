@@ -52,9 +52,4 @@ class PlacesController < ApplicationController
   def place_params
     params.permit %i(name)
   end
-
-  def pretty_format(subject)
-    resource = ActiveModelSerializers::SerializableResource.new(subject)
-    JSON.pretty_generate resource.as_json
-  end
 end
