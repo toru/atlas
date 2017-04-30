@@ -61,6 +61,33 @@ class CheckinsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  describe 'GET /checkins/latest' do
+    subject { JSON.parse body }
+
+    describe 'when there are no public checkins' do
+      it 'returns nil' do
+        get latest_checkins_path
+
+        assert_response :success
+        assert_nil subject
+      end
+    end
+
+    describe 'when public checkins exist' do
+      before do
+        public_checkins.last.created_at += 1.hour
+        public_checkins.last.save
+      end
+
+      it 'returns the latest checkin' do
+        get latest_checkins_path
+
+        assert_response :success
+        assert_equal public_checkins.last.id, subject['id']
+      end
+    end
+  end
+
   describe 'POST /checkins' do
     subject { JSON.parse body }
 

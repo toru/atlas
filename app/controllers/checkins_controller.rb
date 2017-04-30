@@ -15,6 +15,12 @@ class CheckinsController < ApplicationController
     render json: @checkin
   end
 
+  def latest
+    @checkin = Checkin.where(is_public: true).order(created_at: :desc).limit(1)
+
+    render json: @checkin.last
+  end
+
   def create
     return render_400(msg: 'place_id required') unless params[:place_id]
 
