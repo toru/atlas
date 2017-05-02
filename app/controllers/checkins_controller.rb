@@ -1,6 +1,7 @@
 class CheckinsController < ApplicationController
   def index
-    @checkins = Checkin.where(is_public: true)
+    @checkins = Checkin.includes(place: :place_content)
+                       .where(is_public: true)
                        .order(created_at: :desc)
                        .page(params[:page])
 
